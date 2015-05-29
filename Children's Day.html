@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Happy Children's Day</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<script src="./js/cloud.js"></script>
+
+<script>
+
+function init() {
+    var w = document.body.clientWidth, h = document.body.clientHeight;
+    var clouder = document.getElementById('clouder');
+    
+    clouder.style.border = "1px solid black";
+    clouder.style.width = w * 2 / 3;
+    clouder.style.height = h * 2 / 3;
+    clouder.style.position = "absolute";
+    clouder.style.left = w / 6;
+    clouder.style.top = h / 6;
+    clouder.style.border = "1px solid black";
+
+    for (var i in this.params) {
+        clouder[i] = this.params[i];
+    } // for
+    
+    window.clouder = new Clouder({
+        container: clouder,
+        tags: createTags(),
+        colorMin: "#0000FF",
+        colorMax: "#F5EE2C",
+        colorBgr: "#000000",
+        interval: 50,
+        fontSize: 12,
+        fontShift: 4,
+        opaque: 0.3
+    });
+} // init
+
+function createTags() {
+    var elems = [];
+    elems.push({text: "我们的节日", id: "1", weight: 0.1});
+    elems.push({text: "广东医学院", id: "2", weight: 0.1});
+    elems.push({text: "南方医科大学", id: "3", weight: 0.1});
+    elems.push({text: "东莞理工学院", id: "4", weight: 0.1});
+    elems.push({text: "谢卫华", id: "5", weight: 0.1});
+    elems.push({text: "谢静玲", id: "6", weight: 0.1});
+    elems.push({text: "刘福", id: "7", weight: 0.1});
+    elems.push({text: "刘细凤", id: "8", weight: 0.1});
+    elems.push({text: "小学", id: "9", weight: 0.1});
+    elems.push({text: "陂头中学", id: "10", weight: 0.5});
+    elems.push({text: "连平中学", id: "20", weight: 0.5});
+    elems.push({text: "大学", id: "30", weight: 0.5});
+    elems.push({text: "Laughter is timeless", id: "40", weight: 0.5});
+    elems.push({text: "imagination has no age", id: "50", weight: 0.5});
+    elems.push({text: "and dreams are forever", id: "60", weight: 0.5});
+    elems.push({text: "致青春", id: "70", weight: 1.0});
+    elems.push({text: "给你们", id: "80", weight: 1.0});
+    elems.push({text: "刘小凤", id: "90", weight: 1.0});
+    elems.push({text: "谢冠灵", id: "100", weight: 1.0});
+    elems.push({text: "儿童节快乐", id: "300", weight: 0.1});
+    elems.push({text: "广东轻工业学院", id: "200", weight: 0.1});
+    elems.push({text: "华南农业大学", id: "300", weight: 0.1});
+
+    return elems;
+} // createTags
+
+</script>
+
+</head>
+
+<body onLoad="init();">
+
+<div id="clouder"/>
+
+</body>
+
+</html>
+
