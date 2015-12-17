@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>To Arlene</title>
+    <base >
+    <meta charset="UTF-8">
+    <meta name="Description" content="Arlene, Happy Birthday">
+    <meta name="Keywords" content="小凤, 生日快乐, Arlene, Happy Birthday">
+    <meta name="Author" content="guan">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="css/sky.css">
+    <style type="text/css">
+        #intro{
+            padding: 10px;
+            font-size: 30px;
+            text-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), 
+            -1px 0 3px rgba(103, 171, 236, 0.6), 
+            1px 0 4px rgba(69, 112, 204, 0.5);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="bg-small fullscreen hide"></div>
+    <div id="intro">
+        
+    </div>
+
+
+    <span id="meteor" class="star star-1 hide"></span>
+
+    <div class="footer">
+
+    </div>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script type="text/javascript">
+    var bgLoaded = false;
+    var spriteLoaded = false;
+    window.smallBgLoaded = function() {
+        var bg = document.querySelector(".bg-small");
+        bg.setAttribute("class", "bg-small fullscreen");
+        starImgLoaded();
+        var cache = document.getElementById("cache");
+        var img = document.createElement("img");
+        img.setAttribute("src", "css/images/pc-home-bg.jpg");
+        img.setAttribute("onload", "bigBgLoaded()");
+        cache.appendChild(img);
+    }
+
+    window.spriteImgLoaded = function() {
+        var intro = document.getElementById("intro");
+        intro.setAttribute("class", "intro-visible");
+    };
+
+    window.bigBgLoaded = function() {
+        var div = document.createElement("div");
+        div.setAttribute("class", "bg fullscreen");
+        document.body.insertBefore(div, document.body.firstChild);
+    };
+
+    var shipinLayer = document.getElementById("shipin-wrapper");
+    var qrLayer = document.getElementById("qr-layer");
+    var shipin = document.getElementById("shipin");
+    var meteor = document.getElementById("meteor");
+
+    function openAppStore(e){
+        e.stopPropagation();
+        window.open("https://itunes.apple.com/cn/app/id954993775?ls=1&amp;mt=8","_blank");
+        hideQRLayer();
+        _hmt.push(["_trackEvent", "download", "download-pc-ios"]);
+    }
+
+    function hideQRLayer() {
+        qrLayer.removeAttribute("style");
+    }
+
+    function showItunesQR() {
+        qrLayer.setAttribute("style","display:block;");
+    }
+
+    function androidDownload(e) {
+        e.stopPropagation();
+        window.open("http://apk.dian.fm/hd-1.1.5.1.apk","_blank");
+        hideQRLayer();
+        _hmt.push(["_trackEvent", "download", "download-pc-android"]);
+    }
+
+    function showShipin() {
+        shipinLayer.setAttribute("class", "fullscreen shipin-visible");
+        shipin.innerHTML = '<embed src="http://static.youku.com/v/swf/qplayer.swf?VideoIDS=XODc0OTM5MDA4=&isAutoPlay=true&isShowRelatedVideo" allowFullScreen="true" quality="high" width="800" height="540" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+    }
+
+    function hideShipin() {
+        shipin.innerHTML = "";
+        shipinLayer.setAttribute("class", "fullscreen");
+    }
+
+    var isWebkit = false;
+    if ("webkitTransition" in meteor.style) {
+        isWebkit = true;
+    }
+
+    function starImgLoaded() {
+        if (!("transition" in meteor.style)) {
+            return;
+        }
+        startMeteorCross();
+        if (isWebkit) {
+            meteor.addEventListener("webkitAnimationEnd", function() {
+                meteor.setAttribute("class", "star star-1 hide");
+                setTimeout(startMeteorCross, 2000)
+            })
+        } else {
+            meteor.addEventListener("animationEnd", function() {
+                meteor.setAttribute("class", "star star-1 hide");
+                setTimeout(startMeteorCross, 2000)
+            })
+        }
+        addStars();
+    };
+
+    function startMeteorCross() {
+        var left = Math.floor(document.body.clientWidth * Math.random()) + "px";
+        var top = Math.floor(50 * Math.random()) + "px";
+        meteor.setAttribute("style", "left:" + left + ";top:" + top + ";");
+        meteor.setAttribute("class", "star star-1 across-sky");
+    }
+
+    function addStars() {
+        for (var i = 0; i < 18; i++) {
+            var span = document.createElement("span");
+            var k = (i % 3) + 2
+            span.setAttribute("class", ("star blink star-" + k));
+            var timeDelay = Math.random() * 3 + "s";
+            var cycle = Math.random() * 5 + 2 + "s";
+            var left = Math.floor(Math.random() * document.body.clientWidth) + "px";
+            var top = Math.floor(Math.random() * document.body.clientHeight * 0.7) + "px";
+            var tempStyle = "-webkit-animation-delay:" + timeDelay + 
+                        ";animation-delay:" + timeDelay + 
+                        ";-webkit-animation-duration:" + cycle + 
+                        ";animation-duration:" + cycle + 
+                        ";left:" + left + 
+                        ";top:" + top + ";";
+            span.setAttribute("style", tempStyle);
+            document.body.appendChild(span);
+        }
+    }
+
+    $('#intro').typed({
+        strings: ["Arlene: ^2000 <br>   &nbsp; &nbsp; &nbsp; &nbsp;     When a meteorite streaked across the sky, ^2000 <br> please accept my best wishes for your happiness. ^2000 <br> Happy birthday to you. <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Louis"],
+        typeSpeed: 20,
+        backDelay: 500,
+        loop: false,
+        cursorChar: "|",
+        loopCount: false,
+    });
+
+    </script>
+
+
+    <div id="cache" style="height:0;overflow:hidden;width:0;position:absolute;left:-100px;">
+        <img src="css/images/stars.png" />
+        <img src='css/images/pc-home-sprite-2.png' onload="spriteImgLoaded()" />
+        <img src="css/images/pc-bg-small.jpg" onload="smallBgLoaded()">
+    </div>
+</body>
+
+</html>
