@@ -1,0 +1,20 @@
+version: "2"
+services:
+    mysql-test:
+      image: 192.168.1.253:5000/mysql:5.6.36
+      container_name: compose_mysql_test
+      restart: always
+      ports:
+        - "3306:3306"
+      volumes:
+        #配置文件
+        # - ~/Desktop/mysql/conf/my.cnf:/etc/mysql/my.cnf
+        #数据目录
+        - ~/Desktop/docker-share/data/mysql/data:/var/lib/mysql
+        #备份目录
+        # - ~/Desktop/mysql/backup/test:/mysql/backup
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: super_manager_v2
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
